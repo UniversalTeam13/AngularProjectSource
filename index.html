@@ -2,25 +2,123 @@
 <html>
 <!--<link rel="stylesheet" type="text/css" href="mystyle.css">-->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
- <style>
-  body::-webkit-scrollbar{
+<style>
+  body::-webkit-scrollbar {
     display: none;
   }
-  body{
-  background-image: url("media/back2.jpg");
-  background-attachment: fixed;
+body
+{
+  background-color:black;
+}
+ 
+  .blur1 {
+    position: absolute;
+   width:100%;
+   height:100%;
+    filter: blur(10px) grayscale(1) contrast(150%) brightness(50%);
+    z-index: 2;
+    opacity: 1;
   }
-</style>
-<body onload="loadbk()" onresize="loadbk()">    
-</body>
-<script>
-    function loadbk()
-    {
-      var mw=window.innerWidth
-      var mh=window.innerHeight
-      var mh1=window.innerHeight*(25/100)
-      var mh2=window.innerHeight*(50/100)
+  .pic {
+    position: relative;
+    left: 25%;
+    padding-top:13%;
+    z-index: 3;
     }
-  </script>
-</html> 
 
+   #img {
+    width: 50%;
+    height: 70%;
+    box-shadow: 10px 10px 50px rgba(0, 0, 0, 0.6);
+  }
+  .player
+  {
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:15%;
+    z-index: 4;
+    opacity: 0.6;
+    background-color: black;
+    
+  }
+
+  .controls
+  {
+    position: absolute ;
+    top:50%;
+    width:100%;
+    height:50px;
+  }
+  #next{
+    position :fixed;
+    filter:invert();
+    border-width: 0;
+    border-color: black;
+    background: url('media/ff.png');
+    background-repeat: none;
+    background-position-x: 3px;
+    width: 50px;
+    height:50px;
+    outline-color: transparent; 
+    left:60%; 
+    }
+    #prev{
+    position :fixed;
+    filter:invert();
+    border-width: 0;
+    border-color: black;
+    background: url('media/rewind.png');
+    background-repeat: none;
+    background-position-x: 3px;
+    width: 50px;
+    height:50px;
+    outline-color: transparent; 
+    padding-right: 10px;
+    left:40%; 
+    }
+    #play{
+    position :fixed;
+    filter:invert();
+    border-width: 0;
+    border-color: black;
+    background: url('media/play.png');
+    background-repeat: none;
+    background-position-x: 3px;
+    width: 50px;
+    height:50px;
+    outline-color: transparent; 
+    left:50%; 
+    transition:all 0.2s ;
+    }
+
+    #play:hover
+    {
+      transform: scale(1.4)    }
+</style>
+
+<body id="b1" onload="loadbk()" >
+    <div class="blur1" id="blur1"></div>
+      <div class="pic" id="pic"><img id="img" src="media/back2.jpg" alt=""></div>
+      <div id="player" class="player">
+        <div id="controls" class="controls">
+          <button id="prev"></button>
+          <button id="play"></button>
+          <button id="next"></button>
+        </div>
+      </div>
+</body>
+
+<script>
+  function loadbk() {
+    var mw = window.innerWidth
+    var mh = window.innerHeigh
+    var mh1 = window.innerHeight * (25 / 100)
+    var mh2 = window.innerHeight * (50 / 100)
+    document.getElementById("blur1").style.backgroundImage = "url('" + document.getElementById("img").getAttribute("src") + "')"
+  }
+
+</script>
+
+</html>
